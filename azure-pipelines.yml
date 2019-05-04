@@ -13,7 +13,11 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: docker build -t $(dockerId)/$(imageName) .  # add options to this command to meet your needs
+- script: 
+    docker build -t mrdevops1/testdotnetdocker .  # add options to this command to meet your needs
+    # docker login -u $(dockerId) -p $(pswd) <docker-registry-url>  # this is if the build depends on another image
+    # in a protected registry (Make sure that you define the Docker password as a secret variable in the build pipeline and not in the YAML file.)
+    # See Build and Image section at https://docs.microsoft.com/en-us/azure/devops/pipelines/languages/docker?view=azure-devops
 #- script: dotnet build --configuration $(buildConfiguration)
   displayName: 'docker dotnet build $(buildConfiguration)'
 
