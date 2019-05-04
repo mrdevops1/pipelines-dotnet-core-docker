@@ -11,14 +11,24 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  dockerId: mrdevops1  # Replace with your Docker ID for Docker Hub or the admin user name for the Azure Container Registry
+  imageName: dotNet-docker-image  # Replace with the name of the image you want to publish
+  
 
 steps:
-- script: 
-    docker build -t mrdevops1/testdotnetdocker .  # add options to this command to meet your needs
-    # docker login -u $(dockerId) -p $(pswd) <docker-registry-url>  # this is if the build depends on another image
-    # in a protected registry (Make sure that you define the Docker password as a secret variable in the build pipeline and not in the YAML file.)
-    # See Build and Image section at https://docs.microsoft.com/en-us/azure/devops/pipelines/languages/docker?view=azure-devops
-#- script: dotnet build --configuration $(buildConfiguration)
+- script: |
+    docker build -t $(dockerId)/$(imageName) .
+    docker login -u $(dockerId) -p $(pswd)
+    docker push $(dockerId)/$(imageName)
+
   displayName: 'docker dotnet build $(buildConfiguration)'
+
+  env:
+    pswd: $(dockerPassword)        # Define dockerPassword in the Variables tab of this pipeline in Pipelines page of web interface
+
+#- script: dotnet build --configuration $(buildConfiguration)
+  
+
+
 
 
