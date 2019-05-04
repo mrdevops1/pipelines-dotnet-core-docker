@@ -1,4 +1,4 @@
-
+[![Build Status](https://dev.azure.com/brdom15120860/DevOps-Azure/_apis/build/status/mrdevops1.pipelines-dotnet-core-docker?branchName=master)](https://dev.azure.com/brdom15120860/DevOps-Azure/_build/latest?definitionId=1&branchName=master)
 # Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
