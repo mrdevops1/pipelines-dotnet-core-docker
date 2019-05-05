@@ -17,11 +17,11 @@ variables:
 steps:
 - script: |
     docker build -t $(dockerId)/$(imageName) .
-    docker login -u $(dockerId) -p $(pswd)
+    docker login -u $(dockerId) -p $env:SECRET
     docker push $(dockerId)/$(imageName)
 
   env:
-    pswd: $(dockerPassword)        # Define dockerPassword in the Variables tab of this pipeline in Pipelines page of web interface 
+    SECRET: $(dockerPassword)        # Define dockerPassword in the Variables tab of this pipeline in Pipelines page of web interface 
 
   displayName: 'docker dotnet build $(buildConfiguration)'
 
