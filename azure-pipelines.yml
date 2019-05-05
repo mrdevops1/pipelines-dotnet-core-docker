@@ -17,7 +17,7 @@ variables:
 steps:
 - script: |
     docker build -t $(dockerId)/$(imageName) .
-    docker login -u $(dockerId) -p $env:SECRET
+    docker login -u $(dockerId) --password-stdin $env:SECRET
     docker push $(dockerId)/$(imageName)
 
   env:
